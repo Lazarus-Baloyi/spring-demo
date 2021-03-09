@@ -9,7 +9,7 @@ List processes/containers on docker: 	docker ps
 Logon to the DB: 						docker exec -it <POSTGRES CONTAINER ID> psql -U postgres collectionsdb
 
 #Get collections service
-Follow as per https://gts-it.fnb.co.za/wiki/display/ROCCIT/Collection+Service
+Follow as per ()
 build & compile
 
 #run collections service
