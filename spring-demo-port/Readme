@@ -1,0 +1,39 @@
+#Docker setup:
+download & install Docker for your OS, you can set it up to run on laptop startup
+
+#Setup Postgres on docker
+#(you might need to uninstall your existing postgres or change the default port its listening on):
+Install latest postgres on docker: 		docker pull postgres:11
+Run postgres: 							docker run --name dev-postgres -p 5432:5432 -e POSTGRES_PASSWORD=password -d postgres:11
+List processes/containers on docker: 	docker ps
+Logon to the DB: 						docker exec -it <POSTGRES CONTAINER ID> psql -U postgres collectionsdb
+
+#Get collections service
+Follow as per https://gts-it.fnb.co.za/wiki/display/ROCCIT/Collection+Service
+build & compile
+
+#run collections service
+cd collections-service-facade
+mvn spring-boot:run
+
+#Run this demo service
+mvn clean install (on root folder)
+cd spring-demo-port
+mvn spring-boot:run
+    Once service runs, it will automatically create 4 tables in the collectionsds on postgres
+    you can then insert dummy data from the file in the sql folder in the zipped package
+
+
+#End points
+http://localhost:8083/spring-demo/ping
+http://localhost:8083/spring-demo/loadarrangement
+
+#Sample input for loadarrangement
+{
+ "fromaccountNumber":"62006587284",
+ "toaccountNumber":"3000015418213",
+ "arrangementAmount":"300",
+ "paymentDay":"2020-09-13"
+}
+
+#haven't completed docker setup as yet due to conflict with my Oracle JDK and Dockers OpenJDK, once resolved, will update
